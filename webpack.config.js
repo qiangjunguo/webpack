@@ -19,20 +19,31 @@ module.exports = {
 
     },
     output: {
-        filename: "[name].bundle.js",
+        filename: "[name].[contenthash].js",
         path: path.resolve(__dirname, 'dist'),
         clean: true,
     },
-    // optimization: {
-    //     // runtimeChunk: 'single'
-    //     splitChunks: {
-    //         chunks: "all"
-    //     }
-    // },
+    optimization: {
+        moduleIds: 'deterministic',
+        runtimeChunk: 'single',
+        splitChunks: {
+            cacheGroups: {
+                vendor: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    chunks: "all"
+                }
+            }
+        }
+        // splitChunks: {
+        //     chunks: "all"
+        // }
+    },
     plugins: [
         new htmlWebpackOlugin({
             // title: '管理输出-自动'
-            title: '开发环境'
+            // title: '开发环境'
+            title: 'Caching'
         })
     ],
     //source-map追溯error

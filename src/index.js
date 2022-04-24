@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import printMe from "./print.js";
-
+// import print from "./print.js";
 //静态引入
 // function component() {
 //     const element = document.createElement('div');
@@ -33,6 +33,8 @@ async function getComponent() {
 
     const {default: _} = await import('lodash')
     element.innerHTML = _.join(['Hello', 'Webpack'], '')
+    // element.onclick = print.bind(null,'hello webpack')
+
     return element
 
 }
